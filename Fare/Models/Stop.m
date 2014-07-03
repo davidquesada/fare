@@ -17,12 +17,20 @@
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"uniqueName" : @"unique_name",
-             @"humanName" : @"human_name",
-             @"additionalName" : @"additional_name"};
+    return @{
+//             @"uniqueName" : @"unique_name",
+//             @"humanName" : @"human_name",
+             @"humanName" : @"name",
+
+             @"additionalName" : @"additional_name",
+             
+             @"latitude" : @"lat",
+             @"longitude" : @"lon",
+             
+             };
 }
 
-#pragma mark - NSObjet
+#pragma mark - NSObject
 
 - (NSString *)debugDescription {
     return [NSString stringWithFormat:@"ID: %@\nUnique name: %@\nHuman name: %@\nAdditional name: %@\nLatitude: %@\nLongitude: %@\nHeading: %@",
@@ -33,6 +41,13 @@
             self.latitude,
             self.longitude,
             self.heading];
+}
+
+#pragma mark - Stop
+
+- (NSString *)uniqueName
+{
+    return [self.id description];
 }
 
 @end

@@ -24,9 +24,11 @@
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"active" : @"is_active",
+    return @{
+             //@"active" : @"is_active",
              @"topOfLoopStopID" : @"top_of_loop_stop_id"};
 }
+// TODO: Path? 
 
 #pragma mark - NSObject
 

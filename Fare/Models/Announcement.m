@@ -24,7 +24,9 @@
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{};
+    return @{
+             @"text" : @"message",
+             };
 }
 
 #pragma mark - NSObject

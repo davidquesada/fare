@@ -33,6 +33,9 @@ NSString * const UMResponseSerializerErrorDomain = @"UMResponseSerializerErrorDo
     if (self = [super init]) {
         _responseObjectClass = responseObjectClass;
         _inArray = inArray;
+        
+        // DoubleMap uses "text/html" for its JSON responses...
+        self.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     }
     return self;
 }
@@ -97,23 +100,40 @@ NSString * const UMResponseSerializerErrorDomain = @"UMResponseSerializerErrorDo
     NSDictionary *jsonDict = [super responseObjectForResponse:response
                                                          data:data
                                                         error:error];
-    id errorObject = jsonDict[kError];
-    if (errorObject) {
-        NSError *apiError = [self errorForJSONObject:errorObject error:error];
-        if (error && apiError) {
-            *error = apiError;
+    
+    if ([jsonDict isKindOfClass:[NSDictionary class]])
+    {
+        id errorObject = jsonDict[kError];
+        if (errorObject) {
+            NSError *apiError = [self errorForJSONObject:errorObject error:error];
+            if (error && apiError) {
+                *error = apiError;
+            }
+            
+            return nil;
         }
         
-        return nil;
+        if (self.inArray) {
+            return [self arrayResponseObjectForJSONObject:jsonDict[kResponse]
+                                                    error:error];
+        } else {
+            return [self nonArrayResponseObjectForJSONObject:jsonDict[kResponse]
+                                                       error:error];
+        }
+    } else if ([jsonDict isKindOfClass:[NSArray class]])
+    {
+        if (self.inArray)
+            return [self arrayResponseObjectForJSONObject:jsonDict error:error];
+        else
+            // We got back an array, but we're not looking for an array?
+            NSLog(@"What to do here?");
     }
-    
-    if (self.inArray) {
-        return [self arrayResponseObjectForJSONObject:jsonDict[kResponse]
-                                                error:error];
-    } else {
-        return [self nonArrayResponseObjectForJSONObject:jsonDict[kResponse]
-                                                   error:error];
+    else if (jsonDict)
+    {
+        // We got something else.
+        NSLog(@"Garbaage?");
     }
+    return nil;
 }
 
 @end

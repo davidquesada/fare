@@ -8,7 +8,7 @@
 
 #pragma API Root
 
-static NSString * kUMRootURL                    = @"http://mbus.pts.umich.edu/";
+static NSString * kUMRootURL                    = @"http://mbus.doublemap.com/";
 
 #pragma Legacy XML API
 
@@ -17,10 +17,10 @@ static NSString * kUMAPIFetchTraceRoute         = @"shared/map_trace_route_%@.xm
 
 #pragma JSON API
 
-static NSString * kUMAPIFetchAnnouncements      = @"api/v0/announcements";
-static NSString * kUMAPIFetchRoutes             = @"api/v0/routes";
-static NSString * kUMAPIFetchStops              = @"api/v0/stops";
-static NSString * kUMAPIFetchBuses              = @"api/v0/buses";
+static NSString * kUMAPIFetchAnnouncements      = @"map/v2/announcements";
+static NSString * kUMAPIFetchRoutes             = @"map/v2/routes";
+static NSString * kUMAPIFetchStops              = @"map/v2/stops";
+static NSString * kUMAPIFetchBuses              = @"map/v2/buses";
 
 #pragma Tags
 

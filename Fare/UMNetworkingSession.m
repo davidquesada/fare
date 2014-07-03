@@ -27,6 +27,13 @@
 - (instancetype)init {
     if (self = [super init]) {
         _manager = [AFHTTPRequestOperationManager manager];
+        
+//        // DoubleMap uses "text/html" for its JSON responses...
+//        NSSet *types = _manager.responseSerializer.acceptableContentTypes;
+//        if (!types)
+//            types = [NSSet new];
+//        types = [types setByAddingObject:@"text/html"];
+//        _manager.responseSerializer.acceptableContentTypes = types;
     }
     return self;
 }
