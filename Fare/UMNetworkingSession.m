@@ -27,13 +27,6 @@
 - (instancetype)init {
     if (self = [super init]) {
         _manager = [AFHTTPRequestOperationManager manager];
-        
-//        // DoubleMap uses "text/html" for its JSON responses...
-//        NSSet *types = _manager.responseSerializer.acceptableContentTypes;
-//        if (!types)
-//            types = [NSSet new];
-//        types = [types setByAddingObject:@"text/html"];
-//        _manager.responseSerializer.acceptableContentTypes = types;
     }
     return self;
 }
@@ -47,7 +40,7 @@
             parameters:nil
                success:HandlerBlock(successBlock)
                failure:HandlerBlock(errorBlock)]
-     setResponseSerializer:[Arrival um_xmlArrayResponseSerializer]];
+     setResponseSerializer:[Arrival um_jsonArrayResponseSerializer]];
 }
 
 - (void)fetchBusesWithSuccessBlock:(UMArrayBlock)successBlock errorBlock:(UMErrorBlock)errorBlock {
@@ -80,14 +73,6 @@
                success:HandlerBlock(successBlock)
                failure:HandlerBlock(errorBlock)]
      setResponseSerializer:[Stop um_jsonArrayResponseSerializer]];
-}
-
-- (void)fetchTraceRouteForRouteID:(NSString *)routeID withSuccessBlock:(UMArrayBlock)successBlock errorBlock:(UMErrorBlock)errorBlock {
-    [[self.manager GET:[self rootURLWithPath:[NSString stringWithFormat:kUMAPIFetchTraceRoute, routeID]]
-            parameters:nil
-               success:HandlerBlock(successBlock)
-               failure:HandlerBlock(errorBlock)]
-     setResponseSerializer:[TraceRoute um_xmlArrayResponseSerializer]];
 }
 
 @end

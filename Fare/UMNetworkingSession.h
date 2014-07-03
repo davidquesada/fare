@@ -44,12 +44,5 @@ typedef void (^UMErrorBlock)(NSError *error);
  @param errorBlock A block of code handling either a network error, or a JSON error return by the server.
  */
 - (void)fetchAnnouncementsWithSuccessBlock:(UMArrayBlock)successBlock errorBlock:(UMErrorBlock)errorBlock;
-/**
- Requests an array of coordinates that represent the street route that a given route ID operates on.
- @param routeID A valid ID of a route
- @param successBlock A block of code handling a successful request containing array of TraceRoute objects.
- @param errorBlock A block of code handling either a network error, or a JSON error return by the server.
- */
-- (void)fetchTraceRouteForRouteID:(NSString *)routeID withSuccessBlock:(UMArrayBlock)successBlock errorBlock:(UMErrorBlock)errorBlock;
 
 @end

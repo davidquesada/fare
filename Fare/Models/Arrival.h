@@ -40,4 +40,9 @@
  */
 @property (strong, nonatomic, readonly) NSArray *stops;
 
+/**
+ Returns an NSArray of TraceRoute objects that describe the path taken by the route
+ */
+@property (strong, nonatomic, readonly) NSArray *traceRoute;
+
 @end
