@@ -17,8 +17,10 @@
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"routeName" : @"route",
-             @"routeID" : @"route"};
+    return @{
+             @"routeID" : @"route",
+             @"latitude" : @"lat",
+             @"longitude" : @"lon"};
 }
 
 #pragma mark - NSObjet
