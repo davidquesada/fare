@@ -35,7 +35,7 @@ NSString * const UMResponseSerializerErrorDomain = @"UMResponseSerializerErrorDo
         _inArray = inArray;
         
         // DoubleMap uses "text/html" for its JSON responses...
-        self.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        self.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     }
     return self;
 }

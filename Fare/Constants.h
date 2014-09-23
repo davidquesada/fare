@@ -27,6 +27,8 @@ static NSString * kUMAPIFetchBuses              = @"map/v2/buses";
 // What's the difference between a route and an arrival?
 static NSString * kUMAPIFetchArrivals           = @"map/v2/routes";
 
+static NSString * kUMAPIFetchETAFormat          = @"map/v2/eta?stop=%d";
+
 #pragma Tags
 
 static NSString * kError                        = @"error";

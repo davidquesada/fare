@@ -14,7 +14,7 @@
 /**
  Returns the stop's ID
  */
-@property (nonatomic, copy, readonly) NSString *id;
+@property (nonatomic, copy, readonly) NSNumber *id;
 
 /**
  Returns the stop's unique name

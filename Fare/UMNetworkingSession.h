@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "AFHTTPRequestOperation.h"
 
+@class ETA;
+
 typedef void (^UMArrayBlock)(NSArray *array);
 typedef void (^UMErrorBlock)(NSError *error);
+typedef void (^UMETABlock)(ETA *eta);
 
 @interface UMNetworkingSession : NSObject
 
@@ -44,5 +47,14 @@ typedef void (^UMErrorBlock)(NSError *error);
  @param errorBlock A block of code handling either a network error, or a JSON error return by the server.
  */
 - (void)fetchAnnouncementsWithSuccessBlock:(UMArrayBlock)successBlock errorBlock:(UMErrorBlock)errorBlock;
+
+
+/**
+ Requests ETA information for a stop.
+ @param stopID The ID of the stop to query ETA information for.
+ @param successBlock A block of code handling a successful request containing an array containing one ETA object.
+ @param errorBlock A block of code handling either a network error, or a JSON error return by the server.
+ */
+- (void)fetchETAForStopWithID:(NSNumber *)stopID successBlock:(UMETABlock)successBlock errorBlock:(UMErrorBlock)errorBlock;
 
 @end

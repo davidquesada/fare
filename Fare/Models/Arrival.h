@@ -36,7 +36,8 @@
 @property (nonatomic, copy, readonly) UIColor *routeColor;
 
 /**
- Returns an NSArray of ArrivalStop objects that the route is servicing
+ Returns an NSArray of NSNumber objects that the route is servicing
+ (Represents Stop IDs)
  */
 @property (strong, nonatomic, readonly) NSArray *stops;
 

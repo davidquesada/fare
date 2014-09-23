@@ -41,6 +41,7 @@
                success:HandlerBlock(successBlock)
                failure:HandlerBlock(errorBlock)]
      setResponseSerializer:[Arrival um_jsonArrayResponseSerializer]];
+//      setResponseSerializer:[Route um_jsonArrayResponseSerializer]];
 }
 
 - (void)fetchBusesWithSuccessBlock:(UMArrayBlock)successBlock errorBlock:(UMErrorBlock)errorBlock {
@@ -73,6 +74,15 @@
                success:HandlerBlock(successBlock)
                failure:HandlerBlock(errorBlock)]
      setResponseSerializer:[Stop um_jsonArrayResponseSerializer]];
+}
+
+- (void)fetchETAForStopWithID:(NSNumber *)stopID successBlock:(UMETABlock)successBlock errorBlock:(UMErrorBlock)errorBlock {
+    NSString *path = [NSString stringWithFormat:kUMAPIFetchETAFormat, [stopID intValue]];
+    [[self.manager GET:[self rootURLWithPath:path]
+            parameters:nil
+               success:HandlerBlock(successBlock)
+               failure:HandlerBlock(errorBlock)]
+     setResponseSerializer:[ETA um_jsonResponseSerializer]];
 }
 
 @end

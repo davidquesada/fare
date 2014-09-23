@@ -15,49 +15,6 @@
 
 #pragma mark - NSValueTransformer
 
-+ (NSValueTransformer *)stopsJSONTransformer {
-    NSValueTransformer *dictionaryTransformer = [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:[ArrivalStop class]];
-    
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSArray *dictionaries) {
-        NSMutableArray *models = [NSMutableArray arrayWithCapacity:dictionaries.count];
-        for (id JSONDictionary in dictionaries) {
-            if (JSONDictionary == NSNull.null) {
-                [models addObject:NSNull.null];
-                continue;
-            }
-            
-            id model = [dictionaryTransformer transformedValue:JSONDictionary];
-            if (model == nil) {
-                continue;
-            } else {
-                [models addObject:model];
-            }
-        }
-        return models;
-    } reverseBlock:^id(NSArray *models) {
-        if (models == nil) {
-            return nil;
-        } else {
-            NSMutableArray *dictionaries = [NSMutableArray arrayWithCapacity:models.count];
-            for (id model in models) {
-                if (model == NSNull.null) {
-                    [dictionaries addObject:NSNull.null];
-                    continue;
-                }
-                
-                NSDictionary *dictionary = [dictionaryTransformer reverseTransformedValue:model];
-                
-                if (dictionary == nil) {
-                    continue;
-                } else {
-                    [dictionaries addObject:dictionary];
-                }
-            }
-            return dictionaries;
-        }
-    }];
-}
-
 + (NSValueTransformer *)routeColorJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *color) {
         return [UIColor colorFromHexString:color];
@@ -105,9 +62,6 @@
              
              @"traceRoute" : @"path",
              
-             // Keep this here to prevent exceptions when trying to interpret "stops" as a collection of dicts.
-             // Instead of trying to make the bad conversion, it will just nope out when it sees "stopWOO" DNE.
-             @"stops" : @"stopWOO",
              };
 }
 
